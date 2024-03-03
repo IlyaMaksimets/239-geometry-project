@@ -7,7 +7,7 @@ from src.menu_commands import help_info, about_program_info
 from src.menu_commands import keyboard_input, file_input, random_input
 from src.menu_commands import move_edit, mirror_edit, rotate180_edit
 from src.menu_commands import only_text_output, file_output, text_and_image_output
-from src.menu_commands import write_point_pos
+from src.menu_commands import write_point_pos, count_ans, demo_ans
 
 
 class MenuConfig:
@@ -110,9 +110,9 @@ class MenuConfig:
         self.mainmenu.add_cascade(label='Ввод', menu=self.inputmenu)
         self.mainmenu.add_cascade(label='Вывод', menu=self.outputmenu)
         self.mainmenu.add_cascade(label='Редактирование', menu=self.editmenu)
-        self.mainmenu.add_command(label='Вычисление', command={})
+        self.mainmenu.add_command(label='Вычисление', command=count_ans)
         self.mainmenu.add_cascade(label='Изменение', menu=self.cursedmenu)
-        self.mainmenu.add_command(label='Демонстрация', command={})
+        self.mainmenu.add_command(label='Демонстрация', command=lambda: demo_ans(self.canvas, self.zoom))
         self.mainmenu.add_cascade(label='Справка', menu=self.infomenu)
         self.mainmenu.add_command(label='Выход', command=sys.exit)
 
