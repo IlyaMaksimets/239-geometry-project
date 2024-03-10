@@ -22,7 +22,7 @@ def points_deletion(function: Callable[[Any], None]) -> Callable[[Any], None]:
     :return: Callable[[Any], None]
     """
     def inner(*args) -> None:
-        function(*args)
         args[0].recreate_project_layout()
+        function(*args)
 
     return inner

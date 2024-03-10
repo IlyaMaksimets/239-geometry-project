@@ -1,18 +1,20 @@
 from tkinter import *
 from typing import List, Any
 
-from other import get_local_storage_path, canvas_clean
+from ..other import get_local_storage_path, canvas_clean
+from ..other.decorators import points_deletion
 
 
 def get_x_cross(x1: float, y1: float, x2: float, y2: float, x3: float, y3: float, x4: float, y4: float) -> [None, List[
                     Any]]:
     if x1 == x3 or x2 == x4:
         return None
-    part1 = y4 - y1 + (x1 * (y3 - y1)) / (x3 - x1) - (x3 * (y4 - y2)) / (x4 - x2)
-    part2 = (y3 - y1) / (x3 - x1) - (y4 - y2) / (x4 - x2)
-    if part2 == 0:
+    part1 = (x1 * y2 - x2 * y1) * (x3 - x4) - (x1 - x2) * (x3 * y4 - x4 * y3)
+    part2 = (x1 * y2 - x2 * y1) * (y3 - y4) - (y1 - y2) * (x3 * y4 - x4 * y3)
+    part3 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
+    if part3 == 0:
         return None
-    return part1 / part2
+    return [part1 / part3, part2 / part3]
 
 
 def count_ans() -> List[float]:
@@ -30,10 +32,9 @@ def count_ans() -> List[float]:
                 for m in range(len(lines)):
                     if i == j or i == k or i == m or j == k or j == m or k == m:
                         continue
-                    x = get_x_cross(*points[i], *points[j], *points[k], *points[m])
-                    if x is not None:
-                        ans_points.append([x, (x - points[i][0]) * (points[k][1] - points[i][1]) / (
-                                points[k][0] - points[i][0]) + points[i][1], *points[i], *points[j], *points[k],
+                    ans = get_x_cross(*points[i], *points[j], *points[k], *points[m])
+                    if ans is not None:
+                        ans_points.append([*ans, *points[i], *points[j], *points[k],
                                            *points[m]])
     ans_point = ans_points[0]
     for i in range(1, len(ans_points)):
@@ -52,13 +53,13 @@ def count_ans() -> List[float]:
     return ans_point
 
 
+@points_deletion
 @canvas_clean
 def demo_ans(canvas, zoom):
     ans_point = count_ans()
-    print(ans_point)
     canvas.create_line(800 + ans_point[2] * 50 / zoom, 300 + (-ans_point[3]) * 50 / zoom,
-                       800 + ans_point[6] * 50 / zoom, 300 + (-ans_point[7]) * 50 / zoom)
-    canvas.create_line(800 + ans_point[4] * 50 / zoom, 300 + (-ans_point[5]) * 50 / zoom,
+                       800 + ans_point[4] * 50 / zoom, 300 + (-ans_point[5]) * 50 / zoom)
+    canvas.create_line(800 + ans_point[6] * 50 / zoom, 300 + (-ans_point[7]) * 50 / zoom,
                        800 + ans_point[8] * 50 / zoom, 300 + (-ans_point[9]) * 50 / zoom)
     canvas.create_oval(800 + ans_point[0] * 50 / zoom - 3, 300 + (-ans_point[1]) * 50 / zoom - 3,
                        800 + ans_point[0] * 50 / zoom + 3, 300 + (-ans_point[1]) * 50 / zoom + 3,

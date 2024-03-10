@@ -2,12 +2,12 @@ import sys
 from tkinter import *
 from typing import Any, Callable, List
 
-from src.menu_commands import erase_edit, paste_edit, define_edit, delete_edit
-from src.menu_commands import help_info, about_program_info
-from src.menu_commands import keyboard_input, file_input, random_input
-from src.menu_commands import move_edit, mirror_edit, rotate180_edit
-from src.menu_commands import only_text_output, file_output, text_and_image_output
-from src.menu_commands import write_point_pos, count_ans, demo_ans
+from ..menu_commands import erase_edit, paste_edit, define_edit, delete_edit
+from ..menu_commands import help_info, about_program_info
+from ..menu_commands import keyboard_input, file_input, random_input
+from ..menu_commands import move_edit, mirror_edit, rotate180_edit
+from ..menu_commands import only_text_output, file_output, text_and_image_output
+from ..menu_commands import write_point_pos, count_ans, demo_ans
 
 
 class MenuConfig:

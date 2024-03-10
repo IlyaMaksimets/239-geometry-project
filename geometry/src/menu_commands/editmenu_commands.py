@@ -1,5 +1,5 @@
 from tkinter import *
-from other.decorators import points_deletion
+from ..other.decorators import points_deletion
 from ..other import canvas_clean, get_local_storage_path
 from ..classes.modified_canvas import ModifiedCanvas
 

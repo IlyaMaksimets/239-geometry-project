@@ -1,7 +1,7 @@
 from tkinter import *
 from typing import Any
 from ..other import canvas_clean
-from other.decorators import points_deletion
+from ..other.decorators import points_deletion
 from ..other import get_local_storage_path
 
 

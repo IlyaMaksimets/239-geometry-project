@@ -1,2 +1,2 @@
 def get_local_storage_path():
-    return "src/local_storage.txt"
+    return "geometry/src/local_storage.txt"
