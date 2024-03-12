@@ -4,7 +4,7 @@ from typing import Any
 from ..other import canvas_clean, get_local_storage_path
 
 
-# ----------------------------Неимпортированные методы----------------------------
+# ----------------------------Неэкспортированные методы----------------------------
 def fill_points_list(n: int, number_of_points_label: Label, number_of_points_entry: Entry,
                      number_of_points_button: Button) -> None:
     """
@@ -70,7 +70,7 @@ def add_point_to_list(x: int, y: int, point_x: Label, point_y: Label, point_x_en
     point_add_button.destroy()
 
 
-# ----------------------------Импортированные методы----------------------------
+# ----------------------------Экспортированные методы----------------------------
 
 
 @canvas_clean

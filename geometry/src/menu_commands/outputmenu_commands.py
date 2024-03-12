@@ -2,9 +2,10 @@ from tkinter import *
 
 from ..other import canvas_clean, get_local_storage_path
 from ..classes.modified_canvas import ModifiedCanvas
+from ..other.decorators import points_deletion
 
 
-# ----------------------------Неимпортированные методы----------------------------
+# ----------------------------Неэкспортированные методы----------------------------
 
 
 def create_file(filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
@@ -29,7 +30,7 @@ def create_file(filename: str, file_name_button: Button, file_name_entry: Entry)
     file_name_entry.destroy()
 
 
-# ----------------------------Импортированные методы----------------------------
+# ----------------------------Экспортированные методы----------------------------
 
 @canvas_clean
 def file_output() -> None:

@@ -4,7 +4,7 @@ from ..other import canvas_clean, get_local_storage_path
 from ..classes.modified_canvas import ModifiedCanvas
 
 
-# ----------------------------Неимпортированные методы----------------------------
+# ----------------------------Неэкспортированные методы----------------------------
 
 
 def define_point(point_x: str, point_y: str, point_x_define: str, point_y_define: str, point_x_entry: Entry,
@@ -99,7 +99,7 @@ def delete_point(x: float, y: float, point_x_label: Label, point_y_label: Label,
     point_add_button.destroy()
 
 
-# ----------------------------Импортированные методы----------------------------
+# ----------------------------Экспортированные методы----------------------------
 
 
 @canvas_clean
@@ -134,24 +134,32 @@ def define_edit() -> None:
 
     :return: None
     """
+    point_x_label = Label(text="X old: ")
+    point_x_label.place(x=20, y=20, width=120, height=20)
     point_x_entry = Entry()
     point_x_entry.focus()
     point_x_entry.place(x=20, y=50, width=120, height=20)
+    point_y_label = Label(text="Y old: ")
+    point_y_label.place(x=20, y=80, width=120, height=20)
     point_y_entry = Entry()
     point_y_entry.focus()
-    point_y_entry.place(x=20, y=70, width=120, height=20)
+    point_y_entry.place(x=20, y=110, width=120, height=20)
+    point_x_define_label = Label(text="X new: ")
+    point_x_define_label.place(x=20, y=140, width=120, height=20)
     point_x_define_entry = Entry()
     point_x_define_entry.focus()
-    point_x_define_entry.place(x=20, y=90, width=120, height=20)
+    point_x_define_entry.place(x=20, y=170, width=120, height=20)
+    point_y_define_label = Label(text="Y new: ")
+    point_y_define_label.place(x=20, y=200, width=120, height=20)
     point_y_define_entry = Entry()
     point_y_define_entry.focus()
-    point_y_define_entry.place(x=20, y=110, width=120, height=20)
+    point_y_define_entry.place(x=20, y=230, width=120, height=20)
     point_define_button = Button(text="Ввод",
                                  command=lambda: define_point(point_x_entry.get(), point_y_entry.get(),
                                                               point_x_define_entry.get(), point_y_define_entry.get(),
                                                               point_x_entry, point_y_entry, point_x_define_entry,
                                                               point_y_define_entry, point_define_button))
-    point_define_button.place(x=20, y=150, width=50, height=20)
+    point_define_button.place(x=20, y=270, width=50, height=20)
 
 
 @canvas_clean

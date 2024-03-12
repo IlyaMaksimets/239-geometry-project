@@ -110,7 +110,7 @@ class MenuConfig:
         self.mainmenu.add_cascade(label='Ввод', menu=self.inputmenu)
         self.mainmenu.add_cascade(label='Вывод', menu=self.outputmenu)
         self.mainmenu.add_cascade(label='Редактирование', menu=self.editmenu)
-        self.mainmenu.add_command(label='Вычисление', command=count_ans)
+        self.mainmenu.add_command(label='Вычисление', command=lambda: count_ans(self.zoom))
         self.mainmenu.add_cascade(label='Изменение', menu=self.cursedmenu)
         self.mainmenu.add_command(label='Демонстрация', command=lambda: demo_ans(self.canvas, self.zoom))
         self.mainmenu.add_cascade(label='Справка', menu=self.infomenu)

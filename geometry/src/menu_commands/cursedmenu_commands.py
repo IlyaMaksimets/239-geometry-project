@@ -4,6 +4,8 @@ from ..other import canvas_clean
 from ..other.decorators import points_deletion
 from ..other import get_local_storage_path
 
+# ----------------------------Неэкспортированные методы----------------------------
+
 
 def points_move(x: float, y: float, move_x: Label, move_y: Label, move_x_entry: Entry, move_y_entry: Entry,
                 points_move_button: Button) -> None:
@@ -35,6 +37,8 @@ def points_move(x: float, y: float, move_x: Label, move_y: Label, move_x_entry: 
     move_y_entry.destroy()
     points_move_button.destroy()
 
+
+# ----------------------------Экспортированные методы----------------------------
 
 @points_deletion
 @canvas_clean

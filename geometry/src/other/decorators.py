@@ -10,7 +10,7 @@ def canvas_clean(function: Callable[[Any], None]) -> Callable[[Any], None]:
     """
     def inner(*args, **kwargs):
         Button(text="", bd=0, bg="white", state="disabled").place(x=0, y=0, width=250, height=600)
-        function(*args, **kwargs)
+        return function(*args, **kwargs)
 
     return inner
 

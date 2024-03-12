@@ -5,19 +5,45 @@ from ..other import get_local_storage_path, canvas_clean
 from ..other.decorators import points_deletion
 
 
-def get_x_cross(x1: float, y1: float, x2: float, y2: float, x3: float, y3: float, x4: float, y4: float) -> [None, List[
-                    Any]]:
-    if x1 == x3 or x2 == x4:
-        return None
+# ----------------------------Неэкспортированные методы----------------------------
+
+def get_point_cross(x1: float, y1: float, x2: float, y2: float, x3: float, y3: float, x4: float, y4: float,
+                    zoom: float) -> List[float]:
+    """
+    Вычисляет точку пересечения прямых, заданных парами точек им принадлежащих.
+
+    :param x1: float
+    :param y1: float
+    :param x2: float
+    :param y2: float
+    :param x3: float
+    :param y3: float
+    :param x4: float
+    :param y4: float
+    :param zoom: float
+    :return: List[float]
+    """
+    delta = zoom / 10
+    if x1 == x2 and x3 == x4:
+        x1 -= delta
+    if y1 == y2 and y3 == y4:
+        y1 -= delta
     part1 = (x1 * y2 - x2 * y1) * (x3 - x4) - (x1 - x2) * (x3 * y4 - x4 * y3)
     part2 = (x1 * y2 - x2 * y1) * (y3 - y4) - (y1 - y2) * (x3 * y4 - x4 * y3)
     part3 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
-    if part3 == 0:
-        return None
     return [part1 / part3, part2 / part3]
 
 
-def count_ans() -> List[float]:
+# ----------------------------Неэкспортированные методы----------------------------
+
+@canvas_clean
+def count_ans(zoom: float) -> List[float]:
+    """
+    Вычисляет ответ на задачу.
+
+    :param zoom: float
+    :return: List[float]
+    """
     txt_file = open(get_local_storage_path(), 'r')
     lines = txt_file.readlines()
     txt_file.close()
@@ -32,7 +58,7 @@ def count_ans() -> List[float]:
                 for m in range(len(lines)):
                     if i == j or i == k or i == m or j == k or j == m or k == m:
                         continue
-                    ans = get_x_cross(*points[i], *points[j], *points[k], *points[m])
+                    ans = get_point_cross(*points[i], *points[j], *points[k], *points[m], zoom)
                     if ans is not None:
                         ans_points.append([*ans, *points[i], *points[j], *points[k],
                                            *points[m]])
@@ -55,8 +81,15 @@ def count_ans() -> List[float]:
 
 @points_deletion
 @canvas_clean
-def demo_ans(canvas, zoom):
-    ans_point = count_ans()
+def demo_ans(canvas: Any, zoom: float) -> None:
+    """
+    Выводит результат работы программы по решению задачи на экран.
+
+    :param canvas: Any
+    :param zoom: float
+    :return: None
+    """
+    ans_point = count_ans(zoom)
     canvas.create_line(800 + ans_point[2] * 50 / zoom, 300 + (-ans_point[3]) * 50 / zoom,
                        800 + ans_point[4] * 50 / zoom, 300 + (-ans_point[5]) * 50 / zoom)
     canvas.create_line(800 + ans_point[6] * 50 / zoom, 300 + (-ans_point[7]) * 50 / zoom,
