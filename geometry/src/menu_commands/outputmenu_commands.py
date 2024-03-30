@@ -2,7 +2,6 @@ from tkinter import *
 
 from ..other import canvas_clean, get_local_storage_path
 from ..classes.modified_canvas import ModifiedCanvas
-from ..other.decorators import points_deletion
 
 
 # ----------------------------Неэкспортированные методы----------------------------
@@ -20,7 +19,7 @@ def create_file(filename: str, file_name_button: Button, file_name_entry: Entry)
     local_storage = open(get_local_storage_path(), 'r')
     lines = local_storage.readlines()
     local_storage.close()
-    outputfile = open(f"src/output_files/{filename}.txt", 'w')
+    outputfile = open(f"geometry/src/output_files/{filename}.txt", 'w')
     for line in lines:
         outputfile.write(line)
     outputfile.close()

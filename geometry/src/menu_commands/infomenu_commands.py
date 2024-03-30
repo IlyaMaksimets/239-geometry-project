@@ -8,7 +8,7 @@ def help_info() -> None:
 
     :return: None
     """
-    info = open("src/menu_commands/info.txt", "r", encoding="utf-8").readlines()
+    info = open("geometry/src/menu_commands/info.txt", "r", encoding="utf-8").readlines()
     mb.showinfo("Помощь", "".join(info[:-1]))
 
 
@@ -18,5 +18,5 @@ def about_program_info() -> None:
 
     :return: None
     """
-    info = open("src/menu_commands/info.txt", "r", encoding="utf-8").readlines()
+    info = open("geometry/src/menu_commands/info.txt", "r", encoding="utf-8").readlines()
     mb.showinfo("О программе", info[-1])
