@@ -7,10 +7,11 @@ from ..classes.modified_canvas import ModifiedCanvas
 # ----------------------------Неэкспортированные методы----------------------------
 
 
-def create_file(filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
+def create_file(file_name_label: Label, filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
     """
     Функция создания текстового файла и его заполнения.
 
+    :param file_name_label: Label
     :param filename: str
     :param file_name_button: Button
     :param file_name_entry: Entry
@@ -44,7 +45,8 @@ def file_output() -> None:
     file_name_entry.focus()
     file_name_entry.place(x=20, y=70, width=120, height=20)
     file_name_button = Button(text="Ввод",
-                              command=lambda: create_file(file_name_entry.get(), file_name_button, file_name_entry))
+                              command=lambda: create_file(file_name_label, file_name_entry.get(), file_name_button,
+                                                          file_name_entry))
     file_name_button.place(x=20, y=120, width=50, height=20)
 
 

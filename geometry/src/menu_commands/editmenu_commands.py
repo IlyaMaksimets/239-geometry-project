@@ -7,12 +7,17 @@ from ..classes.modified_canvas import ModifiedCanvas
 # ----------------------------Неэкспортированные методы----------------------------
 
 
-def define_point(point_x: str, point_y: str, point_x_define: str, point_y_define: str, point_x_entry: Entry,
+def define_point(point_x_label: Label, point_y_label: Label, point_x_define_label: Label, point_y_define_label: Label,
+                 point_x: str, point_y: str, point_x_define: str, point_y_define: str, point_x_entry: Entry,
                  point_y_entry: Entry, point_x_define_entry: Entry,
                  point_y_define_entry: Entry, point_define_button: Button) -> None:
     """
     Заменяет координаты одной из точек из local_storage на введенные.
 
+    :param point_x_label: Label
+    :param point_y_label: Label
+    :param point_x_define_label: Label
+    :param point_y_define_label: Label
     :param point_x: str
     :param point_y: str
     :param point_x_define: str
@@ -41,9 +46,14 @@ def define_point(point_x: str, point_y: str, point_x_define: str, point_y_define
     point_x_define_entry.destroy()
     point_y_define_entry.destroy()
     point_define_button.destroy()
+    point_x_label.destroy()
+    point_y_label.destroy()
+    point_x_define_label.destroy()
+    point_y_define_label.destroy()
 
 
-def add_point_to_list(x: float, y: float, point_x_label: Label, point_y_label: Label, point_x_entry: Entry, point_y_entry: Entry,
+def add_point_to_list(x: float, y: float, point_x_label: Label, point_y_label: Label, point_x_entry: Entry,
+                      point_y_entry: Entry,
                       point_add_button: Button) -> None:
     """
     Добавляет координаты точки в local_storage.
@@ -67,8 +77,9 @@ def add_point_to_list(x: float, y: float, point_x_label: Label, point_y_label: L
     point_add_button.destroy()
 
 
-def delete_point(x: float, y: float, point_x_label: Label, point_y_label: Label, point_x_entry: Entry, point_y_entry: Entry,
-                      point_add_button: Button) -> None:
+def delete_point(x: float, y: float, point_x_label: Label, point_y_label: Label, point_x_entry: Entry,
+                 point_y_entry: Entry,
+                 point_add_button: Button) -> None:
     """
     Удаляет координаты точки из local_storage.
 
@@ -155,7 +166,9 @@ def define_edit() -> None:
     point_y_define_entry.focus()
     point_y_define_entry.place(x=20, y=230, width=120, height=20)
     point_define_button = Button(text="Ввод",
-                                 command=lambda: define_point(point_x_entry.get(), point_y_entry.get(),
+                                 command=lambda: define_point(point_x_label, point_y_label, point_x_define_label,
+                                                              point_y_define_label, point_x_entry.get(),
+                                                              point_y_entry.get(),
                                                               point_x_define_entry.get(), point_y_define_entry.get(),
                                                               point_x_entry, point_y_entry, point_x_define_entry,
                                                               point_y_define_entry, point_define_button))
@@ -181,9 +194,9 @@ def delete_edit() -> None:
     point_y_entry.place(x=20, y=100, width=120, height=20)
     point_add_button = Button(text="Ввод",
                               command=lambda: delete_point(float(point_x_entry.get()), float(point_y_entry.get()),
-                                                                point_x_label,
-                                                                point_y_label, point_x_entry, point_y_entry,
-                                                                point_add_button))
+                                                           point_x_label,
+                                                           point_y_label, point_x_entry, point_y_entry,
+                                                           point_add_button))
     point_add_button.place(x=20, y=150, width=50, height=20)
 
 

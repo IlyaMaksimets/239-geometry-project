@@ -27,22 +27,24 @@ def fill_points_list(n: int, number_of_points_label: Label, number_of_points_ent
     number_of_points_button.destroy()
 
 
-def read_from_file(filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
+def read_from_file(file_name_label: Label, filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
     """
     Фукнция, дублируюдщая содержимое файла с заданным названием в local_storage.
 
+    :param file_name_label: Label
     :param filename: str
     :param file_name_button: Button
     :param file_name_entry: Entry
     :return: None
     """
-    outputfile = open(f"src/input_files/{filename}.txt", 'r')
+    outputfile = open(f"geometry/src/input_files/{filename}.txt", 'r')
     lines = outputfile.readlines()
     outputfile.close()
     local_storage = open(get_local_storage_path(), 'w')
     for line in lines:
         local_storage.write(line)
     local_storage.close()
+    file_name_label.destroy()
     file_name_button.destroy()
     file_name_entry.destroy()
 
@@ -127,7 +129,8 @@ def file_input() -> None:
     file_name_entry.focus()
     file_name_entry.place(x=20, y=70, width=120, height=20)
     file_name_button = Button(text="Ввод",
-                              command=lambda: read_from_file(file_name_entry.get(), file_name_button, file_name_entry))
+                              command=lambda: read_from_file(file_name_label, file_name_entry.get(), file_name_button,
+                                                             file_name_entry))
     file_name_button.place(x=20, y=120, width=50, height=20)
 
 
