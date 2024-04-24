@@ -31,7 +31,8 @@ def get_point_cross(x1: float, y1: float, x2: float, y2: float, x3: float, y3: f
     part1 = (x1 * y2 - x2 * y1) * (x3 - x4) - (x1 - x2) * (x3 * y4 - x4 * y3)
     part2 = (x1 * y2 - x2 * y1) * (y3 - y4) - (y1 - y2) * (x3 * y4 - x4 * y3)
     part3 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
-    return [part1 / part3, part2 / part3]
+    if part3 != 0:
+        return [part1 / part3, part2 / part3]
 
 
 # ----------------------------Неэкспортированные методы----------------------------
@@ -94,9 +95,17 @@ def demo_ans(canvas: Any, zoom: float) -> None:
                        800 + ans_point[4] * 50 / zoom, 300 + (-ans_point[5]) * 50 / zoom)
     canvas.create_line(800 + ans_point[6] * 50 / zoom, 300 + (-ans_point[7]) * 50 / zoom,
                        800 + ans_point[8] * 50 / zoom, 300 + (-ans_point[9]) * 50 / zoom)
+    canvas.create_line(800 + ans_point[0] * 50 / zoom, 300 + (-ans_point[1]) * 50 / zoom,
+                       800 + ans_point[2] * 50 / zoom, 300 + (-ans_point[3]) * 50 / zoom)
+    canvas.create_line(800 + ans_point[0] * 50 / zoom, 300 + (-ans_point[1]) * 50 / zoom,
+                       800 + ans_point[4] * 50 / zoom, 300 + (-ans_point[5]) * 50 / zoom)
+    canvas.create_line(800 + ans_point[0] * 50 / zoom, 300 + (-ans_point[1]) * 50 / zoom,
+                       800 + ans_point[6] * 50 / zoom, 300 + (-ans_point[7]) * 50 / zoom)
+    canvas.create_line(800 + ans_point[0] * 50 / zoom, 300 + (-ans_point[1]) * 50 / zoom,
+                       800 + ans_point[8] * 50 / zoom, 300 + (-ans_point[9]) * 50 / zoom)
     canvas.create_oval(800 + ans_point[0] * 50 / zoom - 3, 300 + (-ans_point[1]) * 50 / zoom - 3,
                        800 + ans_point[0] * 50 / zoom + 3, 300 + (-ans_point[1]) * 50 / zoom + 3,
-                       fill="black")
+                       fill="red")
     canvas.create_oval(800 + ans_point[2] * 50 / zoom - 3, 300 + (-ans_point[3]) * 50 / zoom - 3,
                        800 + ans_point[2] * 50 / zoom + 3, 300 + (-ans_point[3]) * 50 / zoom + 3,
                        fill="black")

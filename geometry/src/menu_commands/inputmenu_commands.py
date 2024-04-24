@@ -2,6 +2,7 @@ from random import randint as rd
 from tkinter import *
 from typing import Any
 from ..other import canvas_clean, get_local_storage_path
+import tkinter.messagebox as mb
 
 
 # ----------------------------Неэкспортированные методы----------------------------
@@ -16,15 +17,18 @@ def fill_points_list(n: int, number_of_points_label: Label, number_of_points_ent
     :param number_of_points_button: Button
     :return: None
     """
-    globalPointsList = [(rd(-99, 99) / 10.0, rd(-49, 49) / 10.0) for _ in range(n)]
-    txt_file = open(get_local_storage_path(), 'w')
-    txt_file.seek(0)
-    for a, b in globalPointsList:
-        txt_file.write(f'{a} {b}\n')
-    txt_file.close()
-    number_of_points_label.destroy()
-    number_of_points_entry.destroy()
-    number_of_points_button.destroy()
+    if n > 20:
+        mb.showinfo("Важно", "Введите число меньше 20")
+    else:
+        global_points_list = [(rd(-99, 99) / 10.0, rd(-49, 49) / 10.0) for _ in range(n)]
+        txt_file = open(get_local_storage_path(), 'w')
+        txt_file.seek(0)
+        for a, b in global_points_list:
+            txt_file.write(f'{a} {b}\n')
+        txt_file.close()
+        number_of_points_label.destroy()
+        number_of_points_entry.destroy()
+        number_of_points_button.destroy()
 
 
 def read_from_file(file_name_label: Label, filename: str, file_name_button: Button, file_name_entry: Entry) -> None:
@@ -62,6 +66,10 @@ def add_point_to_list(x: int, y: int, point_x: Label, point_y: Label, point_x_en
     :param point_add_button: Button
     :return: None
     """
+    txt_file = open(get_local_storage_path(), 'r').readlines()
+    if len(txt_file) == 20:
+        mb.showinfo("Важно", "Ввод меньше 20 точек")
+
     txt_file = open(get_local_storage_path(), 'a')
     txt_file.write(f'{x} {y}\n')
     txt_file.close()
